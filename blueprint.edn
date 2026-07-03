@@ -1,0 +1,10 @@
+{:itonami.blueprint/id "cloud-itonami-unspsc-27"
+ :itonami.blueprint/name "Independent Tool Fleet Rental & Maintenance Robotics"
+ :itonami.blueprint/unspsc-segment "27"
+ :itonami.blueprint/domain :equipment/tool-fleet-rental
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:shared-asset-access :local-jobs :waste-reduction]
+ :itonami.blueprint/governor :tool-fleet-governor
+ :itonami.blueprint/robotics true
+ :itonami.blueprint/required-technologies [:robotics :telemetry :optimization :bpmn :audit-ledger]
+ :itonami.blueprint/status :public-oss}
