@@ -10,14 +10,14 @@
  ;; (formation.corporate-intel is not ported -- no analog in the tool-fleet
  ;; domain), so the cloud-itonami-isic-8291 dep is intentionally absent.
  :deps {io.github.com-junkawasaki/langgraph-clj
-        {:local/root "../../com-junkawasaki/langgraph-clj"}}
+        {:local/root "../../kotoba-lang/langgraph"}}
  :aliases
  {;; offline workspace dev -- pin transitive langchain to local checkout.
   ;; (langgraph-clj declares langchain under the io.github.kotoba-lang/langchain
   ;; coordinate, so that is the coordinate overridden here.)
   :dev {:override-deps
         {io.github.kotoba-lang/langchain
-         {:local/root "../../com-junkawasaki/langchain-clj"}}}
+         {:local/root "../../kotoba-lang/langchain"}}}
   ;; clojure -M:dev:run  -> drive the demo through one OperationActor
   :run {:main-opts ["-m" "formation.sim"]}
   :test {:extra-paths ["test"]
