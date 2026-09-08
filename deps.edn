@@ -9,7 +9,12 @@
  ;; Unlike cloud-itonami-isic-6910, there is NO corporate-intel cross-ref
  ;; (formation.corporate-intel is not ported -- no analog in the tool-fleet
  ;; domain), so the cloud-itonami-isic-8291 dep is intentionally absent.
- :deps {io.github.com-junkawasaki/langgraph-clj
+ :deps {
+        ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
+        ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
+        ;; this repo silently rides whatever a sibling happens to name.
+        io.github.kotoba-lang/text {:git/sha "73bdb13ae7a3d004b44bca08be03a3191157a38f"}
+       io.github.com-junkawasaki/langgraph-clj
         {:local/root "../../kotoba-lang/langgraph"}}
  :aliases
  {;; offline workspace dev -- pin transitive langchain to local checkout.

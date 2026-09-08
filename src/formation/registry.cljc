@@ -24,7 +24,7 @@
   any rental management system. It builds the RECORD an operator would file,
   not the act of filing itself (that is `formation.operation`'s :fleet/enroll
   / :fleet/return-to-service / :fleet/retire, each always human-gated)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; -- 20-char fleet-id + ISO 7064 MOD 97-10 (the conformance anchor) --
 
@@ -73,7 +73,7 @@
      (throw (ex-info "fleet-id prefix must be 4 chars" {})))
    (when (not= (count entity-id12) 12)
      (throw (ex-info "entity id must be 12 chars" {})))
-   (let [base (str/upper-case (str prefix "00" entity-id12))]
+   (let [base (str/upper (str prefix "00" entity-id12))]
      (str base (compute-fleet-id-check-digits base)))))
 
 (defn- default-fleet-id-suffix
@@ -88,10 +88,10 @@
   duplicate fleet entry by construction and the exact bug 6910's Addendum 13
   fixed for LEI, translated here to tool identity."
   [tool-id sequence]
-  (let [alnum (str/upper-case (str/replace (str tool-id sequence) #"[^0-9A-Za-z]" ""))
+  (let [alnum (str/upper (str/replace (str tool-id sequence) #"[^0-9A-Za-z]" ""))
         n #?(:clj  (java.math.BigInteger. ^String (to-digits alnum))
              :cljs (js/BigInt (to-digits alnum)))
-        b36 (str/upper-case #?(:clj  (.toString ^java.math.BigInteger n 36)
+        b36 (str/upper #?(:clj  (.toString ^java.math.BigInteger n 36)
                                :cljs (.toString n 36)))
         ;; the last 12 base-36 digits of n == n mod 36^12 (place-value fact) --
         ;; a deterministic reduction into the 12-char alphanumeric space, not
@@ -136,12 +136,12 @@
      (throw (ex-info "enrollment: site required" {})))
    (when (< sequence 0)
      (throw (ex-info "enrollment: sequence must be >= 0" {})))
-   (let [fleet-number (str (str/upper-case class-code) "-" (zero-pad sequence 8))
+   (let [fleet-number (str (str/upper class-code) "-" (zero-pad sequence 8))
          base-eid (or entity-id12 (default-fleet-id-suffix tool-id sequence))
          eid (-> base-eid
                  (subs 0 (min 12 (count base-eid)))
                  (#(str (apply str (repeat (max 0 (- 12 (count %))) "0")) %))
-                 str/upper-case)
+                 str/upper)
          fleet-id (assign-fleet-id prefix eid)
          record {"record_id" fleet-number
                  "kind" "enrollment-draft"
