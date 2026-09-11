@@ -1,5 +1,5 @@
 (ns formation.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks a clean tool through intake
+  "Demo driver -- `kbb -M:dev:run`. Walks a clean tool through intake
   -> class assessment -> defect inspection -> enrollment (always escalates)
   -> human approval -> commit -> a return-to-service after maintenance ->
   a retirement (both also always escalate), a rental checkout + the

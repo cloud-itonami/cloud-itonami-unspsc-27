@@ -77,7 +77,7 @@ Portable `.cljc` namespaces under `src/formation/`:
 - `phase` -- 0→3 staged rollout; no fleet actuation is ever auto-committed.
 - `operation` -- the StateGraph (1 run = 1 operation); `sim` drives the demo.
 
-`clojure -M:dev:test` (64 tests, 290 assertions) and `clojure -M:lint`
+`kbb -M:dev:test` (64 tests, 290 assertions) and `kbb -M:lint`
 (clj-kondo, 0 errors). See [`docs/adr/0001-architecture.md`](docs/adr/0001-architecture.md)
 for the full design and the 6910 addenda translations.
 
