@@ -4,7 +4,7 @@
   self-attestation' hole-fix: an inspection verdict that asserts a condition
   (:clear/:safety-defect) is only as good as the cited readings' coverage of
   the class's required sensor surface."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [formation.telemetry :as telemetry]))
 
 (def drill-metrics (constantly [:battery-voltage :chassis-vibration :guard-presence]))

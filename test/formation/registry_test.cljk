@@ -4,7 +4,7 @@
   formation.registry (itself from matsurigoto's corp-registry). These tests
   mirror 6910's registry conformance suite so the port stays provably
   equivalent, plus the tool-fleet-specific enrollment/RTS/retire records."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [formation.registry :as r]))
 
 (deftest certificate-is-a-draft-not-a-real-enrollment
