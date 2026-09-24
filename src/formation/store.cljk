@@ -209,6 +209,11 @@
   records, sensor readings) are stored as EDN strings so `langchain.db`
   doesn't expand them into sub-entities."
   {:tool/id        {:db/unique :db.unique/identity}
+   ;; one current inspection / assessment per tool: a re-commit upserts it
+   ;; (without identity each commit added a second entity and `:find ?p .`
+   ;; returned an arbitrary one -- "latest verdict wins" failed on kbb)
+   :inspection/tool-id {:db/unique :db.unique/identity}
+   :assessment/tool-id {:db/unique :db.unique/identity}
    :ledger/seq     {:db/unique :db.unique/identity}
    :fleet/seq      {:db/unique :db.unique/identity}
    :sequence/class {:db/unique :db.unique/identity}})
