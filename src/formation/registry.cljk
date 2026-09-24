@@ -28,14 +28,20 @@
 
 ;; -- 20-char fleet-id + ISO 7064 MOD 97-10 (the conformance anchor) --
 
+(defn- code
+  "Character code of `ch`. On cljs a char is a 1-char string and `int` of it
+  is 0 for letters, which let letters through to-digits unconverted."
+  [ch]
+  #?(:clj (int ch) :cljs (.charCodeAt (str ch) 0)))
+
 (defn- to-digits
   "Convert an alphanumeric string to its ISO 7064 numeric form (0-9 stay; A=10 .. Z=35)."
   [s]
   (apply str
          (map (fn [ch]
                 (cond
-                  (<= (int \0) (int ch) (int \9)) (str ch)
-                  (<= (int \A) (int ch) (int \Z)) (str (- (int ch) 55))
+                  (<= (code \0) (code ch) (code \9)) (str ch)
+                  (<= (code \A) (code ch) (code \Z)) (str (- (code ch) 55))
                   :else (throw (ex-info (str "fleet-id char must be [0-9A-Z], got " (pr-str (str ch))) {}))))
               s)))
 
@@ -44,7 +50,9 @@
   number overflows a 53-bit JS/double or a 63-bit long)."
   [numeric-str]
   #?(:clj  (.intValue (.mod (java.math.BigInteger. ^String numeric-str) (java.math.BigInteger. "97")))
-     :cljs (js/Number (js-mod (js/BigInt numeric-str) (js/BigInt 97)))))
+     ;; `js-mod` does not exist (nbb could not load this ns); the piecewise
+     ;; remainder is exact for any length and needs no BigInt.
+     :cljs (reduce (fn [r ch] (mod (+ (* r 10) (- (.charCodeAt ch 0) 48)) 97)) 0 (seq numeric-str))))
 
 (defn compute-fleet-id-check-digits
   "ISO 7064 MOD 97-10 check digits for an 18-char fleet-id base.
