@@ -4,7 +4,7 @@
   makes 'swap the SSoT for Datomic / kotoba-server' a configuration change,
   not a rewrite. Sensor readings are carried by the same protocol, so
   MemStore ≡ DatomicStore parity covers the telemetry layer too."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [formation.store :as store]
             [formation.telemetry :as telemetry]))
 

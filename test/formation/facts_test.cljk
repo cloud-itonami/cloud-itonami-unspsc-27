@@ -1,5 +1,5 @@
 (ns formation.facts-test
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [formation.facts :as facts]))
 
 (deftest drill-class-has-a-spec-basis

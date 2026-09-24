@@ -7,3 +7,4 @@
 # Local absolute-path dep override for dev outside the monorepo (worktree in
 # /tmp etc.). Never commit -- contains machine-specific absolute :local/root.
 deps.local.edn
+.nbb/

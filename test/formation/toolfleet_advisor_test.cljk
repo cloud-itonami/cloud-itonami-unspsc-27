@@ -6,7 +6,7 @@
   harmless-looking request with a mismatched higher-stakes :effect, or one
   that self-attests a :clear verdict with NO sensor basis, can never
   auto-enroll, auto-service or auto-rent."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [langgraph.graph :as g]
             [langchain.model :as model]
             [formation.toolfleetllm :as toolfleetllm]
