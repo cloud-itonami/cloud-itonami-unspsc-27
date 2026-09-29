@@ -36,7 +36,7 @@ LLM はこれらのいずれについても、安全根拠の真正性・判定�
 
 本 actor は `cloud-itonami-isic-6910`（Global Incorporation Actor）の構造を
 **ほぼそのまま port** しつつ、ドメインを会社設立から工具 fleet レンタル/整備へ
-翻訳した。namespace 対応は README/CLAUDE.md の port spec に従う:
+翻訳した。namespace 対応は README/AGENTS.md の port spec に従う:
 
 | 6910 ns | → unspsc-27 ns | 備考 |
 |---|---|---|
