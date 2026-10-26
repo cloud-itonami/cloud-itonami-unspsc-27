@@ -50,7 +50,7 @@
   ;; coordinate, so that is the coordinate overridden here.)
   :dev {:override-deps
         {io.github.kotoba-lang/langchain
-         {:local/root "../../kotoba-lang/langchain"}}}
+        {:local/root "../../kotoba-lang/kotoba/lib/kotoba.langchain"}}}
   ;; kbb -M:dev:run  -> drive the demo through one OperationActor
   :run {:main-opts ["-m" "formation.sim"]}
   :test {:extra-paths ["test"]
